@@ -83,10 +83,11 @@ const ClientMap = () => {
 
   const onClickshowBusLocation = () => {
     getBusTravelInfoByDeviceId(selectedDeviceId).then((data) => {
+      console.log(data,"ddddd");
       if (data.sucess) {
         // setDeviceRouteLocations(data.busInfo[0]);
-        console.log(data.busInfo);
-        let nodes = data.busInfo[0].routeNodes;
+        console.log(data?.busInfo);
+        let nodes = data?.busInfo[0]?.routeNodes;
         let currentNodeOfBus =
           data.busInfo[0].busTravelRecentNodes.locationsWithTimeStamp;
         let currentLocationStamp =
@@ -114,10 +115,12 @@ const ClientMap = () => {
             },
           });
         }
-
+console.log(location);
         let drawLocations = nodes.locations.map((location) => {
           console.log(location);
-          return [location.lat, location.lng];
+          let data=parseLatAndLong(location);
+console.log(data);
+          return [data.lat, data.lng];
         });
 
         console.log(drawLocations);
@@ -130,14 +133,18 @@ const ClientMap = () => {
     // setDeviceRouteLocations(polyline);
     getAllTravellingBusDevicesInfo().then((data) => {
       console.log(data);
-      if (data.sucess) {
-        setAllDevices(data.busInfo);
+      if (data?.sucess) {
+        setAllDevices(data?.busInfo);
       }
     });
   }, []);
 
+  useEffect(()=>{
+
+  },[])
+
   useEffect(() => {
-    // console.log(deviceRouteLocations);
+    console.log(deviceRouteLocations);
     if (deviceRouteLocations.length > 0) {
       var bounds = deviceRouteLocationRef?.current?.getBounds();
       // Fit the map to the polygon bounds
