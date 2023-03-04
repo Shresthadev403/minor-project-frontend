@@ -10,9 +10,9 @@ function App() {
   return (
     <div className="App">
     <Header/>
-    <ClientMap/>
+    {/* <ClientMap/> */}
 
-    {/* <AdminMap/> */}
+    <AdminMap/>
     </div>
   );
 }

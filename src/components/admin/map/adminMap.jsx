@@ -26,6 +26,7 @@ import {
   getRouteDetails,
 } from "../../../controllers/routes";
 import { getAllDevices, updateDeviceRoute } from "../../../controllers/device";
+import { parseLatAndLong } from "../../../utils/gpsUtils";
 
 // import ExternalInfo from "components/ExternalInfo";
 
@@ -241,8 +242,10 @@ const AdminMap = () => {
       console.log(filterRoute);
 
       let drawLocations = filterRoute[0].nodes.locations.map((location) => {
-        console.log(location);
-        return [location.lat, location.lng];
+       console.log(location);
+//         let data=parseLatAndLong(location);
+// console.log(data);
+          return [location.lat, location.lng];
       });
 
       console.log(drawLocations);
